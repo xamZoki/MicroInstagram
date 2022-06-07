@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MIcroInsta.Views.AddPhotoPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             Title="New Item"
+             xmlns:vm="clr-namespace:MIcroInsta.ViewModels">
+      <ContentPage.BindingContext>
+            <vm:AddPhotoPageViewModel x:Name="vm"/>
+        </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Text" FontSize="Medium" />
+            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel"  HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            <StackLayout Padding="50">
+            <ffimageloading:CachedImage 
+                 DownsampleToViewSize="true" 
+                 x:Name="newItem" 
+                 Source="{Binding ImageSource}" >
+               <ffimageloading:CachedImage.GestureRecognizers>
+                    <TapGestureRecognizer
+                         Tapped="ImageButton_Clicked"
+                         NumberOfTapsRequired="1" />
+                </ffimageloading:CachedImage.GestureRecognizers>
+            </ffimageloading:CachedImage>
+            <Label HorizontalOptions="Center" Padding="0,0,0,0" Text="Add photo"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
